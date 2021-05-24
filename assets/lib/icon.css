@@ -1,11 +1,7 @@
 /* Для всех новых иконок нужно добавлять в этом файле их название, как показано ниже в @each $icon
 */
 
-@each $icon in add, add-grey, book, card, close, search, building, dashboard, new, package, wallet, arrow-right, arrow-bottom, more,
-  notification, setting, bin, archive, back, tick, drag, note, loading-oval, bonus-icon, question, map, telegram, whatsapp, social-telegram,
-  social-whatsapp, cart, cart-white, print, warning, comment, bug, reset, eye, eye-closed, arrow, download, top-arrow, right-arrow,
-  bottom-arrow, left-arrow, load
-{
+@each $icon in add, close, search, arrow-right, bin, archive, back, bug, reset, right-arrow, left-arrowб package {
   .icon-$(icon) {
     position: relative;
     display: inline-block;
