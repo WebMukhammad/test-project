@@ -49,6 +49,9 @@ export default {
     border: 1px solid red;
     color: red;
   }
+  &_white {
+    border: 1px solid transparent;
+  }
   &__icon {
     position: relative;
     margin-right: 6px;

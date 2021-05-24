@@ -96,12 +96,24 @@
         </div>
       </div>
     </div>
+    <div class="main-page__note">
+      <div class="main-page__note-wrap">
+        <div class="icon-add icon-add_green main-page__note-icon"></div>
+        Нажмите, чтобы добавить новое условие выборки.
+        <br />
+        Все условия связываются между собой логическими "И"
+      </div>
+    </div>
+    <div class="main-page__footer">
+      <Button theme="white">Протестировать опрос</Button>
+      <Button>Далее</Button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TestPage',
+  name: 'MainPage',
   data() {
     return {
       path: [
@@ -114,6 +126,35 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.main-page {
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 25px;
+    background-color: #f4f7f9;
+  }
+  &__note {
+    color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 30px;
+    margin: 40px 25px;
+    text-align: center;
+    cursor: pointer;
+    &-wrap {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    &-icon {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      margin: 0 auto 10px;
+    }
+  }
+}
 .tab-bar {
   &__titles {
     display: flex;
@@ -166,6 +207,8 @@ export default {
       }
       &-select {
         flex: 3;
+        padding: 7px;
+        border-radius: 5px;
       }
     }
     &-body {
@@ -179,6 +222,8 @@ export default {
       }
       &-select {
         flex: 3;
+        padding: 7px;
+        border-radius: 5px;
       }
     }
     &-footer {

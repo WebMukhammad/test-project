@@ -10,14 +10,14 @@
 
 <script>
 export default {
-  name: 'UserPanel',
-  props: {}
+  name: 'UserPanel'
 }
 </script>
 
 <style lang="postcss" scoped>
 .user-panel {
   display: flex;
+  align-items: center;
   &__avatar {
     width: 40px;
     height: 40px;

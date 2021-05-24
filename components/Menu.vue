@@ -6,15 +6,15 @@
         <img src="~@/assets/img/icon/package.svg" alt="" class="menu__list-link-icon" />
         Опросы
       </nuxt-link>
-      <nuxt-link to="/" class="menu__list-link">
+      <nuxt-link to="/users" class="menu__list-link">
         <img src="~@/assets/img/icon/package.svg" alt="" class="menu__list-link-icon" />
         Пользователи
       </nuxt-link>
-      <nuxt-link to="/" class="menu__list-link">
+      <nuxt-link to="/blocked" class="menu__list-link">
         <img src="~@/assets/img/icon/package.svg" alt="" class="menu__list-link-icon" />
         Черные списки
       </nuxt-link>
-      <nuxt-link to="/" class="menu__list-link">
+      <nuxt-link to="/call-centre" class="menu__list-link">
         <img src="~@/assets/img/icon/package.svg" alt="" class="menu__list-link-icon" />
         Колл-центр
       </nuxt-link>
@@ -59,6 +59,13 @@ export default {
         display: block;
         margin: 0 auto 5px;
         width: 30px;
+      }
+      &.nuxt-link-exact-active {
+        background-color: #f7f7f7;
+        border: 1px solid transparent;
+        &:hover {
+          border: 1px solid transparent;
+        }
       }
     }
   }
