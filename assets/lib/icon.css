@@ -1,0 +1,30 @@
+/* Для всех новых иконок нужно добавлять в этом файле их название, как показано ниже в @each $icon
+*/
+
+@each $icon in add, add-grey, book, card, close, search, building, dashboard, new, package, wallet, arrow-right, arrow-bottom, more,
+  notification, setting, bin, archive, back, tick, drag, note, loading-oval, bonus-icon, question, map, telegram, whatsapp, social-telegram,
+  social-whatsapp, cart, cart-white, print, warning, comment, bug, reset, eye, eye-closed, arrow, download, top-arrow, right-arrow,
+  bottom-arrow, left-arrow, load
+{
+  .icon-$(icon) {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('/img/icon/$(icon).svg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    &_white {
+      background-image: svg-load('./icon/$(icon).svg', fill=#fff);
+    }
+    &_red {
+      background-image: svg-load('./icon/$(icon).svg', fill=#E30613);
+    }
+    &_black {
+      background-image: svg-load('./icon/$(icon).svg', fill=#000);
+    }
+    &_grey {
+      background-image: svg-load('./icon/$(icon).svg', fill=#878787);
+    }
+  }
+}

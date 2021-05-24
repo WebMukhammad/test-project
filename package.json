@@ -1,0 +1,46 @@
+{
+  "name": "astro-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --port 5000",
+    "build": "nuxt build",
+    "start": "nuxt start --port 7000",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint": "yarn lint:js"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@nuxtjs/axios": "^5.13.1",
+    "@sentry/tracing": "^6.2.5",
+    "core-js": "^3.9.1",
+    "dotenv": "^8.2.0",
+    "dsn": "^1.0.2",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "nuxt": "^2.13.0",
+    "postcss": "^7.0.32",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-each": "^0.10.0",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^12.0.1",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-move-props-to-bg-image-query": "^4.0.0",
+    "postcss-nested": "^4.2.3",
+    "postcss-nested-ancestors": "^2.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.2.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "husky": "^4.3.5"
+  }
+}
