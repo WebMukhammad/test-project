@@ -1,0 +1,55 @@
+<template>
+  <button :class="['button', `button_${theme}`]">
+    <span :class="getIconClass" class="button__icon"></span>
+    <slot />
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'Button',
+  props: {
+    theme: {
+      type: String,
+      default: 'green'
+    },
+    icon: {
+      type: String,
+      default: null
+    }
+  },
+  computed: {
+    getClasses() {
+      return [`button_${this.theme}`, `button_h-${this.size}`, 'button', { button_loading: this.loading }, { button_fluid: this.fluid }]
+    },
+    getIconClass() {
+      return `icon-${this.icon} icon-${this.icon}_${this.theme}`
+    }
+  }
+}
+</script>
+
+<style lang="postcss" scoped>
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border: none;
+  color: green;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid green;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  &_red {
+    border: 1px solid red;
+    color: red;
+  }
+  &__icon {
+    position: relative;
+    margin-right: 6px;
+  }
+}
+</style>

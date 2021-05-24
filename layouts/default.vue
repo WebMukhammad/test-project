@@ -1,7 +1,10 @@
 <template>
   <div class="site-carcass">
     <Menu class="site-carcass__menu" />
-    <div class="site-carcass__container"><Header /> <Nuxt /></div>
+    <div class="site-carcass__container">
+      <Header />
+      <Nuxt />
+    </div>
   </div>
 </template>
 

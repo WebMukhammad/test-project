@@ -26,5 +26,8 @@
     &_grey {
       background-image: svg-load('./icon/$(icon).svg', fill=#878787);
     }
+    &_green {
+      background-image: svg-load('./icon/$(icon).svg', fill=green);
+    }
   }
 }

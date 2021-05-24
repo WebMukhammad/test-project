@@ -42,21 +42,24 @@ export default {
     border-radius: 50%;
     margin: 0 auto 30px;
   }
-  &__list-link {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    color: #000;
-    padding: 20px 5px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    &:hover {
-      border: 1px solid green;
-    }
-    &-icon {
+  &__list {
+    margin-bottom: 20px;
+    &-link {
       display: block;
-      margin: 0 auto 5px;
-      width: 30px;
+      text-align: center;
+      text-decoration: none;
+      color: #000;
+      padding: 20px 5px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      &:hover {
+        border: 1px solid green;
+      }
+      &-icon {
+        display: block;
+        margin: 0 auto 5px;
+        width: 30px;
+      }
     }
   }
   &__question {
