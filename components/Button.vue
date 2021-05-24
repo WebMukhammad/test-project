@@ -1,6 +1,6 @@
 <template>
   <button :class="['button', `button_${theme}`]" @click="onClick">
-    <span :class="getIconClass" class="button__icon"></span>
+    <span v-if="icon" :class="getIconClass" class="button__icon"></span>
     <slot />
   </button>
 </template>

@@ -90,7 +90,7 @@ export default {
         'postcss-preset-env': {},
         'postcss-move-props-to-bg-image-query': {},
         'postcss-inline-svg': {
-          paths: [path.join(__dirname, './assets/img')],
+          paths: [path.join(__dirname, './assets/img/')],
           removeFill: true
         },
         'postcss-custom-media': {},

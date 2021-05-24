@@ -53,15 +53,22 @@ export default {
     }
     &:not(&_back):after {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 12px;
+      height: 8px;
       margin-right: 7px;
       margin-left: 5px;
-      background: svg-load('./icon/arrow-bread.svg', fill=#000) no-repeat center;
+      background: svg-load('./icon/arrow-right.svg', fill=#000) no-repeat center;
+      background-size: contain;
       display: inline-block;
     }
-    &:last-child:after {
-      display: none;
+    &:last-child {
+      color: #999;
+      ^^&__link {
+        color: #999;
+      }
+      &:after {
+        display: none;
+      }
     }
   }
   &__link {
@@ -74,18 +81,10 @@ export default {
       position: relative;
       top: 1px;
       display: inline-block;
-      background: svg-load('./svg/category.svg', fill=#000) no-repeat center;
+      background: svg-load('./icon/category.svg', fill=#000) no-repeat center;
       margin-right: 3px;
       background-size: 10px;
       vertical-align: top;
-    }
-  }
-  @media (max-width: 800px) {
-    &__item:not(:last-child):not(&__item_back) {
-      display: none;
-    }
-    &__item_back {
-      display: block;
     }
   }
 }

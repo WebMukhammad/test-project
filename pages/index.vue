@@ -116,10 +116,7 @@ export default {
   name: 'MainPage',
   data() {
     return {
-      path: [
-        { name: 'Опросы', url: '/' },
-        { name: 'Добавить опрос', url: '/' }
-      ]
+      path: [{ name: 'Опросы', url: '/' }, { name: 'Добавить опрос' }]
     }
   }
 }
