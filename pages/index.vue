@@ -4,7 +4,7 @@
     <div class="tab-bar">
       <div class="tab-bar__titles">
         <div class="tab-bar__title">Параметры</div>
-        <div class="tab-bar__title">Вопрорсы</div>
+        <div class="tab-bar__title">Вопросы</div>
         <div class="tab-bar__title">Логика</div>
         <div class="tab-bar__title">Условия</div>
         <div class="tab-bar__title">Респоденты</div>

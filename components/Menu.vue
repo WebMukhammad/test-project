@@ -16,7 +16,7 @@
       </nuxt-link>
       <nuxt-link to="/" class="menu__list-link">
         <img src="~@/assets/img/icon/package.svg" alt="" class="menu__list-link-icon" />
-        Коллд-центр
+        Колл-центр
       </nuxt-link>
     </div>
     <div class="menu__question">?</div>

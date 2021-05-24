@@ -1,5 +1,5 @@
 <template>
-  <button :class="['button', `button_${theme}`]">
+  <button :class="['button', `button_${theme}`]" @click="onClick">
     <span :class="getIconClass" class="button__icon"></span>
     <slot />
   </button>
@@ -19,11 +19,13 @@ export default {
     }
   },
   computed: {
-    getClasses() {
-      return [`button_${this.theme}`, `button_h-${this.size}`, 'button', { button_loading: this.loading }, { button_fluid: this.fluid }]
-    },
     getIconClass() {
       return `icon-${this.icon} icon-${this.icon}_${this.theme}`
+    }
+  },
+  methods: {
+    onClick() {
+      this.$emit('click')
     }
   }
 }
