@@ -11,92 +11,18 @@
       </div>
       <div class="tab-bar__main-title">Добавить опрос</div>
       <div class="tab-bar__cards">
-        <div class="tab-bar__card tab-bar__card_orange">
-          <div class="tab-bar__card-head">
-            <div class="tab-bar__card-head-title">Условие 1</div>
-            <!-- на стилизацию уйдет не мало времени -->
-            <select class="tab-bar__card-head-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Возвраст респодента</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-body">
-            <div class="tab-bar__card-body-title">Тип 1</div>
-            <select class="tab-bar__card-body-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Gold</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-footer">
-            <Button icon="add">Добавить тип</Button>
-            <Button theme="red" icon="bin">Удалить условие</Button>
-          </div>
-        </div>
-        <div class="tab-bar__card tab-bar__card_blue">
-          <div class="tab-bar__card-head">
-            <div class="tab-bar__card-head-title">Условие 1</div>
-            <!-- на стилизацию уйдет не мало времени -->
-            <select class="tab-bar__card-head-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Возвраст респодента</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-body">
-            <div class="tab-bar__card-body-title">Тип 1</div>
-            <select class="tab-bar__card-body-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Gold</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-footer">
-            <Button icon="add">Добавить тип</Button>
-            <Button theme="red" icon="bin">Удалить условие</Button>
-          </div>
-        </div>
-        <div class="tab-bar__card tab-bar__card_green">
-          <div class="tab-bar__card-head">
-            <div class="tab-bar__card-head-title">Условие 3</div>
-            <!-- на стилизацию уйдет не мало времени -->
-            <select class="tab-bar__card-head-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Статус карты лояльность</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-body">
-            <div class="tab-bar__card-body-title">Статус 1</div>
-            <select class="tab-bar__card-body-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Активна</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-footer">
-            <Button icon="add">Добавить статус</Button>
-            <Button theme="red" icon="bin">Удалить условие</Button>
-          </div>
-        </div>
-        <div class="tab-bar__card tab-bar__card_grey">
-          <div class="tab-bar__card-head">
-            <div class="tab-bar__card-head-title">Условие 3</div>
-            <!-- на стилизацию уйдет не мало времени -->
-            <select class="tab-bar__card-head-select">
-              <option value="value1">Значение 1</option>
-              <option value="value2" selected>Выберите условия</option>
-              <option value="value3">Значение 3</option>
-            </select>
-          </div>
-          <div class="tab-bar__card-footer">
-            <Button theme="red" icon="bin">Удалить условие</Button>
-          </div>
-        </div>
+        <Card
+          v-for="(item, index) in cards"
+          :key="index"
+          :theme="item.theme"
+          :condition-list="item.conditionList"
+          :type-list="item.typeList"
+          @add="addCardType(index)"
+          @remove="removeCardType(index)"
+        />
       </div>
     </div>
-    <div class="main-page__note">
+    <div class="main-page__note" @click="addCard">
       <div class="main-page__note-wrap">
         <div class="icon-add icon-add_green main-page__note-icon"></div>
         Нажмите, чтобы добавить новое условие выборки.
@@ -116,7 +42,46 @@ export default {
   name: 'MainPage',
   data() {
     return {
-      path: [{ name: 'Опросы', url: '/' }, { name: 'Добавить опрос' }]
+      path: [{ name: 'Опросы', url: '/' }, { name: 'Добавить опрос' }],
+      cards: [
+        {
+          theme: 'orange',
+          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
+          typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2', selected: true }, { text: 'Значение 3 ' }]]
+        },
+        {
+          theme: 'blue',
+          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
+          typeList: [[{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]]
+        },
+        {
+          theme: 'green',
+          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
+          typeList: [[{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]]
+        },
+        {
+          theme: 'grey',
+          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
+          typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]]
+        }
+      ]
+    }
+  },
+  methods: {
+    addCardType(index) {
+      const list = [{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]
+      this.cards[index].typeList.push(list)
+    },
+    removeCardType(index) {
+      this.cards[index].conditionList = []
+    },
+    addCard() {
+      const card = {
+        theme: 'orange',
+        conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
+        typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2', selected: true }, { text: 'Значение 3 ' }]]
+      }
+      this.cards.push(card)
     }
   }
 }
