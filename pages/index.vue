@@ -14,11 +14,14 @@
         <Card
           v-for="(item, index) in cards"
           :key="index"
+          :count="index + 1"
           :theme="item.theme"
           :condition-list="item.conditionList"
           :type-list="item.typeList"
           @add="addCardType(index)"
           @remove="removeCardType(index)"
+          @change-select="onChangeSelect"
+          @change-select-type="onChangeSelectType"
         />
       </div>
     </div>
@@ -43,45 +46,101 @@ export default {
   data() {
     return {
       path: [{ name: 'Опросы', url: '/' }, { name: 'Добавить опрос' }],
+      result: [],
       cards: [
         {
           theme: 'orange',
-          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
-          typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2', selected: true }, { text: 'Значение 3 ' }]]
+          conditionList: ['Значение 1', 'Значение 2', 'Значение 3 '],
+          typeList: [['Значение 1', 'Значение 2', 'Значение 3 ']]
         },
         {
           theme: 'blue',
-          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
-          typeList: [[{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]]
+          conditionList: ['Значение 1', 'Значение 2', 'Значение 3 '],
+          typeList: [['Значение 1', 'Значение 2', 'Значение 3 ']]
         },
         {
           theme: 'green',
-          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
-          typeList: [[{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]]
+          conditionList: ['Значение 1', 'Значение 2', 'Значение 3 '],
+          typeList: [['Значение 1', 'Значение 2', 'Значение 3 ']]
         },
         {
           theme: 'grey',
-          conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
-          typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]]
+          conditionList: ['Значение 1', 'Значение 2', 'Значение 3 '],
+          typeList: [['Значение 1', 'Значение 2', 'Значение 3 ']]
         }
       ]
     }
   },
   methods: {
     addCardType(index) {
-      const list = [{ text: 'Значение 1', selected: true }, { text: 'Значение 2' }, { text: 'Значение 3 ' }]
+      const list = ['Значение 1', 'Значение 2', 'Значение 3 ']
       this.cards[index].typeList.push(list)
+
+      this.send()
     },
     removeCardType(index) {
-      this.cards[index].conditionList = []
+      this.cards.splice(index, 1)
+      this.result = this.result.filter((el) => el.id !== index + 1)
+      this.send()
     },
     addCard() {
       const card = {
         theme: 'orange',
-        conditionList: [[{ text: 'Значение 1' }, { text: 'Значение 2' }, { text: 'Значение 3 ', selected: true }]],
-        typeList: [[{ text: 'Значение 1' }, { text: 'Значение 2', selected: true }, { text: 'Значение 3 ' }]]
+        conditionList: [['Значение 1', 'Значение 2', 'Значение 3 ']],
+        typeList: [['Значение 1', 'Значение 2', 'Значение 3 ']]
       }
       this.cards.push(card)
+      this.send()
+    },
+    onChangeSelect(data) {
+      // если уже есть значение, то перезаписываем его
+      if (this.result.find((p) => p.id === data.id)) {
+        const propIndex = this.result.findIndex((p) => p.id === data.id)
+        this.result[propIndex].value = data.value
+      } else {
+        this.result.push(data)
+      }
+
+      this.send()
+    },
+    onChangeSelectType(data, id) {
+      /**
+       * Ставим условия, чтобы у ответов был следующая структура:
+       *  id: 'Значение',
+       *  value: 'Значение',
+       *  children: [
+       *    {
+       *      id: 'Значение',
+       *      value: 'Значение',
+       *    }
+       *  ]
+       */
+      if (this.result.find((p) => p.id === id)) {
+        const propIndex = this.result.findIndex((p) => p.id === id)
+        if (this.result[propIndex].children?.find((p) => p.id === data.id)) {
+          const propIndexChild = this.result[propIndex].children.findIndex((p) => p.id === data.id)
+          this.result[propIndex].children[propIndexChild].value = data.value
+        } else {
+          this.result[propIndex].children = [data]
+        }
+      } else {
+        this.result.push([{ id, value: null, children: [data] }])
+      }
+
+      this.send()
+    },
+    async send() {
+      try {
+        await fetch('https://test-5d38d-default-rtdb.firebaseio.com/list.json', {
+          method: 'POST',
+          body: JSON.stringify(this.result),
+          headers: {
+            'Content-Type': 'aplication/json'
+          }
+        })
+      } catch (e) {
+        console.log('При отправке данных произошла ошибка', e)
+      }
     }
   }
 }

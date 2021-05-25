@@ -2,21 +2,15 @@
   <div :class="['card', `card_${theme}`]">
     <div class="card__join">И</div>
     <div class="card__head">
-      <div v-for="(item, index) in conditionList" :key="index" class="card__head-item">
-        <div class="card__head-title">Условие 1</div>
-        <select class="card__head-select">
-          <option v-for="(option, idx) in item" :key="idx" value="value1" :selected="option.selected">
-            {{ option.text }}
-          </option>
-        </select>
+      <div class="card__head-item">
+        <div class="card__head-title">Условие {{ count }}</div>
+        <Select :id="count" :value="conditionValue" :list="conditionList" class="card__head-select" @change="onChangeSelect" />
       </div>
     </div>
     <div class="card__body">
       <div v-for="(item, index) in typeList" :key="index" class="card__body-item">
         <div class="card__body-title">Тип {{ index + 1 }}</div>
-        <select class="card__body-select">
-          <option v-for="(option, idx) in item" :key="idx" value="value1" :selected="option.selected">{{ option.text }}</option>
-        </select>
+        <Select :id="index + 1" :value="typeValue" :list="item" class="card__body-select" @change="onChangeSelectType" />
       </div>
     </div>
     <div class="card__footer">
@@ -45,6 +39,16 @@ export default {
       default() {
         return []
       }
+    },
+    count: {
+      type: Number,
+      default: null
+    }
+  },
+  data() {
+    return {
+      conditionValue: null,
+      typeValue: null
     }
   },
   methods: {
@@ -53,6 +57,12 @@ export default {
     },
     remove() {
       this.$emit('remove')
+    },
+    onChangeSelect(data) {
+      this.$emit('change-select', data)
+    },
+    onChangeSelectType(data) {
+      this.$emit('change-select-type', data, this.count)
     }
   }
 }
@@ -126,8 +136,6 @@ export default {
     }
     &-select {
       flex: 3;
-      padding: 7px;
-      border-radius: 5px;
     }
   }
   &__body {
@@ -143,8 +151,6 @@ export default {
     }
     &-select {
       flex: 3;
-      padding: 7px;
-      border-radius: 5px;
     }
   }
   &__footer {
